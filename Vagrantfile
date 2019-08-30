@@ -73,7 +73,26 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "shell", path: "./install__essentials.sh"
-  # config.vm.provision "shell", path: "./install__xfce.sh"
-  config.vm.provision "shell", path: "./install__applications.sh"
+  # config.vm.provision "shell", path: "./install__essentials.sh"
+  jake_tasks = {
+    "check": {
+      "exec": "jake install:check"
+    },
+    "applications": {
+      "exec": "jake install:applications"
+    },
+    "sublime-text": {
+      "exec": "jake install:sublime-text"
+    },
+    "vbox-additions": {
+      "exec": "jake install:vbox-additions"
+    }
+  }
+
+  config.vm.provision "nodejs", type: "shell", path: "./scripts/install__nodejs.sh"
+  jake_tasks.each do | name, script |
+    config.vm.provision "#{name}", type: "shell", inline: "cd /vagrant && #{script[:exec]} USER=vagrant"
+  end
+
+  # config.vm.provision "applications", type: "shell", inline: "cd /vagrant && jake install:applications"
 end
