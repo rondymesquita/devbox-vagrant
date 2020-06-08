@@ -1,11 +1,13 @@
 # My custom dev box using vagrant
 
-With a collection of bash scripts of commom used tools, applications and environments.
+With a collection of bash scripts of common used tools, applications and environments.
 
 
 ## Requirements
 
-- Vagrant: 2.2.9
+- Vagrant: 2.2.9+
+- VirtualBox: 6.0.14+
+
 
 ## Configuration
 ```bash
