@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source ./_variables.sh
+source ./_common.sh
 
-echo "Checking..."
+log "Checking"
 pwd
-ls
-echo $USER
-echo "fulano: $FULANO"
+echo "BOX_NODE_VERSION:     $BOX_NODE_VERSION"

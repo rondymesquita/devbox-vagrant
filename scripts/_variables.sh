@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-FULANO="Rondy"
-echo ">>> Variables provided"
+BOX_NODE_VERSION="12"
+BOX_USER="vagrant"

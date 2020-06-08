@@ -26,37 +26,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "check", type: "shell", inline: "cd /vagrant/scripts && ./check.sh"
 
-  # config.vm.provision "variables",
-  #   type: "file",
-  #   source: "./scripts/_variables.sh",
-  #   destination: "/home/vagrant",
-  #   run: "always"
-
-  # config.vm.provision "file" do |s|
-  #   s.source = "./scripts/_variables.sh"
-  #   s.destination = "/home/vagrant"
-  # end
-
-  # scripts = Dir.entries("./scripts").select {|f| !File.directory? f}
-  # scripts.each do | script |
-  #   name = script.gsub(".sh","")
-  #   config.vm.provision "#{name}",
-  #     type: "shell",
-  #     path: "./scripts/#{script}",
-  #     run: "never"
-  # end
-
-  # jake_tasks.each do | name, script |
-  #   config.vm.provision "#{name}", type: "shell", inline: "cd /vagrant && #{script[:exec]} USER=vagrant"
-  # end
-  # config.vm.provision "nodejs", type: "shell", path: "./scripts/install__nodejs.sh"
-  # config.vm.provision "applications", type: "shell", inline: "cd /vagrant && jake install:applications"
-
-  # tasks.each do | name, script |
-  #   config.vm.provision "#{name}",
-  #     type: "shell",
-  #     path: "#{script[:exec]}",
-  #     run: "never"
-  # end
-
+  scripts = Dir.entries("./scripts").select {|f| !File.directory? f}
+  scripts.each do | script |
+    name = script.gsub(".sh","")
+    config.vm.provision "#{name}",
+      type: "shell",
+      inline: "cd /vagrant/scripts && ./#{script}",
+      run: "never"
+  end
 end
